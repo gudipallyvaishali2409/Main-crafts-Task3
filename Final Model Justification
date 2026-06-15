@@ -1,0 +1,78 @@
+Final Model Selection Justification
+
+## 1. Why this model was selected
+
+Multiple regression models were evaluated, including Linear Regression, Ridge Regression, and Decision Tree Regressor. The final model was selected based on testing performance, cross-validation results, and its ability to generalize to unseen data.
+
+Although the Decision Tree Regressor achieved a perfect training score (R² = 1.00), its testing score was significantly lower (R² = 0.62), indicating severe overfitting. Therefore, it was not selected as the final model.
+
+The selected model demonstrated a better balance between training and testing performance, indicating that it learned meaningful patterns from the data rather than memorizing the training set.
+
+
+
+## 2. How overfitting was reduced
+
+Initially, the Decision Tree Regressor showed severe overfitting.
+
+Training R² Score = 1.00
+
+Testing R² Score = 0.62
+
+The large gap between training and testing performance indicated that the model memorized the training data and failed to generalize well to unseen data.
+
+To reduce overfitting:
+
+* Tree depth was restricted using max_depth.
+* Hyperparameter tuning was performed using GridSearchCV.
+* Cross-validation was used to evaluate performance across multiple data splits.
+
+These techniques reduced model complexity and improved generalization performance.
+
+
+## 3. Why cross-validation results are trusted
+
+A single train-test split may provide misleading results because the performance can depend heavily on how the data is divided.
+
+Cross-validation addresses this issue by repeatedly training and testing the model on different subsets of the data.
+
+In 5-Fold Cross Validation:
+
+* Dataset is divided into 5 equal parts.
+* The model is trained and evaluated 5 times.
+* Each part is used once as testing data.
+* The final score is obtained by averaging all results.
+
+This process provides a more reliable estimate of real-world model performance and reduces the possibility of bias caused by a single train-test split.
+
+Therefore, cross-validation results are considered more trustworthy than a single testing score.
+
+
+
+## 4. Trade-off Between Simplicity and Performance
+
+Linear Regression is the simplest model among the evaluated algorithms.
+
+Advantages:
+
+* Easy to understand
+* Fast to train
+* Highly interpretable
+
+Disadvantages:
+
+* May fail to capture complex nonlinear relationships
+
+Decision Tree Regressor can model complex patterns but is more prone to overfitting.
+
+Advantages:
+
+* Captures nonlinear relationships
+* Easy to visualize
+
+Disadvantages:
+
+* High risk of overfitting
+
+The final selected model provides a balance between simplicity and predictive performance by maintaining strong accuracy while avoiding excessive complexity.
+
+This trade-off ensures both good performance and better generalization to unseen data.
